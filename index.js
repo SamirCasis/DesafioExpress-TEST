@@ -12,8 +12,9 @@ app.get('/cafes', (req, res) => {
 app.get('/cafes/:id', (req, res) => {
   const { id } = req.params
   const cafe = cafes.find(c => c.id == id)
-  if (cafe) res.status(200).send(cafe)
-  else res.status(404).send({ message: 'No se encontró ningún cafe con ese id' })
+  if (cafe) {
+    res.status(200).send(cafe)
+  } else res.status(404).send({ message: 'No se encontró ningún cafe con ese id' })
 })
 
 app.post('/cafes', (req, res) => {
