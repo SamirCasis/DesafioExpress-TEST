@@ -1,6 +1,6 @@
 ﻿import express from 'express'
-import cafes from './cafes.json'
-/* import cafes from './cafes.json' assert { type: 'json' } */
+/* import cafes from './cafes.json' */
+import cafes from './cafes.json' assert { type: 'json' }
 
 
 const app = express()
@@ -24,7 +24,7 @@ app.post('/cafes', (req, res) => {
   const cafe = req.body
   const { id } = cafe
   const existeUncafeConEseId = cafes.some(c => c.id == id)
-  if (existeUncafeConEseId) res.status(400).send({ message: 'Ya existe un cafe con ese id' })
+  if (existeUncafeConEseId) res.status(404).send({ message: 'Ya existe un cafe con ese id' })
   else {
     cafes.push(cafe)
     res.status(201).send(cafes)
