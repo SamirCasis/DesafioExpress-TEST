@@ -1,7 +1,5 @@
 ﻿import express from 'express'
-/* import cafes from './cafes.json' */
-import cafes from './cafes.json' assert { type: 'json' }
-
+import cafes from './cafes.json'
 
 const app = express()
 
@@ -16,8 +14,8 @@ app.get('/cafes/:id', (req, res) => {
   const cafe = cafes.find(c => c.id == id)
   if (cafe) {
     res.status(200).send(cafe)
-  } else 
-  res.status(404).send({ message: 'No se encontró ningún cafe con ese id' })
+  } else
+    res.status(404).send({ message: 'No se encontró ningún cafe con ese id' })
 })
 
 app.post('/cafes', (req, res) => {
@@ -60,7 +58,7 @@ app.delete('/cafes/:id', (req, res) => {
     } else {
       res.status(404).send({ message: 'No se encontró ningún cafe con ese id' })
     }
-  } else res.status(400).send({ message: 'No recibió ningún token en las cabeceras' })
+  } else res.status(400).send({ message: 'No se recibió ningún token en las cabeceras' })
 })
 
 app.use('*', (req, res) => {
